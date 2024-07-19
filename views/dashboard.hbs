@@ -1,0 +1,28 @@
+{{>header}}
+<title>Dashboard</title>
+
+<div class="row p-3" style="margin: 0px !important;">
+    {{#if success}}
+    <div class="alert alert-success">{{success}}</div>
+    {{/if}}
+    {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+    {{/if}}
+    <div class="col-lg-3 col-6">
+        <div class="small-box" style="background-color: #0C1836; color:white;">
+            <div class="inner">
+                <h3>{{blogData}}</h3>
+                <h4><i>All Blog</i>s</h4>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="/admin/allblogs" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+</div>
+
+{{>footer}}
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+{{>header}}
+<link rel="stylesheet" href="/admin/css/summernote-bs4.min.css">
+<title>Job Details</title>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline mt-3">
+                    <div class="card-header" style="background-color: #0C1836; color:white;">
+                        <h4><b>Job Details</b></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert-success">{{message}}</div>
+                <div class="alert-danger">{{messageerror}}</div>
+                <div class="card">
+                    <div class="card-body">
+                        <div id="privacy-policy-three" class="privacy-policy">
+<form method="post" action="/admin/updatejobs/{{jobs._id}}" enctype="multipart/form-data" >
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label">Job Title</label>
+                <input type="text" class="form-control" name="title" value="{{jobs.title}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Experience<span class="text-danger"></span></label>
+                <input type="number" class="form-control" name="experance" value="{{jobs.experance}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Category<span class="text-danger"></span></label>
+                <input type="text" class="form-control" name="category" value="{{jobs.category}}" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="description" class="col-form-label">Job Description</label>
+                <input type="text" class="form-control" name="jobdiscription" value="{{jobs.jobdiscription}}" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">  
+            <div class="form-group">
+                <label class="col-form-label">Salary</label>
+                <input type="number" class="form-control" name="salary" value="{{jobs.salary}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Salary Review<span class="text-danger"></span></label>
+                <input type="text" class="form-control" name="salaryReview" value="{{jobs.salaryReview}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Working Hours<span class="text-danger"></span></label>
+                <input type="text" class="form-control" name="workingHours" value="{{jobs.workingHours}}" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label">Working Days</label>
+                <input type="text" class="form-control" name="workingdays" value="{{jobs.workingdays}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Weekend<span class="text-danger"></span></label>
+                <input type="text" class="form-control" name="weekend" value="{{jobs.weekend}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Location<span class="text-danger"></span></label>
+                <input type="text" class="form-control" name="location" value="{{jobs.location}}" required>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label">Job Type</label>
+                <input type="text" class="form-control" name="jobtype" value="{{jobs.jobtype}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Vacancy<span class="text-danger"></span></label>
+                <input type="number" class="form-control" name="vacancy" value="{{jobs.vacancy}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Contact<span class="text-danger"></span></label>
+                <input type="number" class="form-control" name="contact" value="{{jobs.contact}}" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="col-form-label">Email<span class="text-danger"></span></label>
+                <input type="email" class="form-control" name="email" value="{{jobs.email}}" required>
+            </div>
+        </div>
+    </div>
+    <div class="form-group d-flex justify-content-center">
+        <button class="btn btn-lg btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{>footer}}
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
+<script src="../dist/js/adminlte.min.js?v=3.2.0"></script>
+<script src="../plugins/filterizr/jquery.filterizr.min.js"></script>
+<script src="../dist/js/demo.js"></script>
+<script>
+    $(function () {
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+                alwaysShowClose: true
+            });
+        });
+
+        $('.filter-container').filterizr({ gutterPixels: 3 });
+        $('.btn[data-filter]').on('click', function () {
+            $('.btn[data-filter]').removeClass('active');
+            $(this).addClass('active');
+        });
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $("input[data-bootstrap-switch]").each(function () {
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        });
+        $('.status').bootstrapSwitch('state');
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#discount, #artDigitalAmount').on('input', function () {
+            calculateDiscountedPrice();
+        });
+        $('#discountedPrice').hover(function () {
+            calculateDiscountedPrice();
+        });
+        function calculateDiscountedPrice() {
+            var artDigitalAmount = $('#artDigitalAmount').val();
+            var discount = $('#discount').val();
+            if (artDigitalAmount && discount) {
+                var discountedPrice = parseFloat(artDigitalAmount) + parseFloat(artDigitalAmount * (discount / 100));
+                $('#discountedPrice').val(discountedPrice);
+            }
+        }
+    });
+</script>
+<script>
+    function logTotalPayableAmount() {
+        var discountedPrice = $('#discountedPrice').val();
+        console.log('Total Payable Amount:', discountedPrice);
+    }
+</script>
+<script src="/admin/js/summernote-bs4.min.js"></script>
+<script>
+    $(function () {
+        $('#hai').summernote()
+        $('#hello').summernote()
+    })
+</script>
+</body>
+
+</html>

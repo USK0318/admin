@@ -1,0 +1,177 @@
+{{>header}}
+<link rel="stylesheet" href="/admin/css/summernote-bs4.min.css">
+<title>Blog</title>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row pt-2 pr-3 pl-3">
+            <div class="col-md-12 p-3" style="background-color: #0C1836; border-left: 2px solid rgb(255, 255, 255);">
+                <h1 style="color: rgb(255, 255, 255) !important;"><b>Add Blog</b></h1>
+            </div>
+        </div>
+    </div>
+</section>
+<form class="form-horizontal pb-4 pr-4 pl-4 pt-1" action="/admin/addblog" method="POST" enctype="multipart/form-data">
+    <div class="alert-success">{{success}}</div>
+    <div class="alert-danger">{{error}}</div>
+    <div class="card-body pt-4" style="border-left: 2px solid rgb(255, 255, 255);">
+        <div class="form-group row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-form-label">Title<span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="title" required placeholder="Title">
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="inputPassword3" for="mainPic" class="col-form-label">Main Picture<span
+                            class="text-danger">*</span></label>
+                    <input class="form-control" type="file" name="mainPic" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-form-label">Date<span class="text-danger">*</span>
+                    </label>
+                    <input type="date" class="form-control" name="date" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label class="col-form-label">Tag</label><span class="text-danger">*</span>
+                    </label>
+                    <div>
+                        <select name="tag" class="form-control">
+                            <option value="Mobile App">Mobile App</option>
+                            <option value="Website">Website</option>
+                            <option value="Technology">Technology</option>
+                            <option value="E-Commerce">E-Commerce</option>
+                            <option value="IT">IT</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-form-label">Main Content</label> <span class="text-danger">*</span></label>
+                    <textarea name="mainContent" class="form-control" {{!-- id="summernote2" --}}
+                        required>Main Content</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label">Sub Picture One<span class="text-danger">*</span></label>
+                    <input class="form-control" type="file" name="subPicOne" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="col-form-label">Sub Picture Two</label> <span class="text-danger">*</span></label>
+                    <input class="form-control" type="file" name="subPicTwo" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="col-form-label">Sub Content</label> <span class="text-danger">*</span></label>
+                    <textarea name="subContent" class="form-control" {{!-- id="summernote3" --}}
+                        required>Sub Content</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <div id="additionalHeaders" class="form-group">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div id="additionalContents" class="form-group">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="button" id="addContentBtn" class="btn btn-primary float-right">Add Text area</button>
+                <button type="button" id="addHeaderBtn" class="btn btn-primary float-right mr-2">Add Heading
+                    tag</button>
+            </div>
+            <div class="col-md-12">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="card-footer col-md-4 offset-md-4 d-flex justify-content-center">
+                <button type="submit" class="btn btn-default btn-block bg-danger">Upload Here</button>
+            </div>
+        </div>
+    </div>
+</form>
+{{>footer}}
+<script src="/admin/js/summernote-bs4.min.js"></script>
+<script>
+    $(function () {
+        $('#summernote1').summernote();
+        $('#summernote2').summernote();
+        $('#summernote3').summernote();
+    })
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var contentCounter = 1;
+        document.getElementById('addContentBtn').addEventListener('click', function () {
+            if (contentCounter <= 10) {
+                var container = document.getElementById('additionalContents');
+                var newTextArea = document.createElement('textarea');
+                newTextArea.setAttribute('class', 'form-control mt-2');
+                newTextArea.setAttribute('name', 'additionalContent' + contentCounter);
+                newTextArea.setAttribute('required', true);
+                newTextArea.placeholder = `Additional content no: ${contentCounter}`;
+                var removeBtn = document.createElement('button');
+                removeBtn.setAttribute('type', 'button');
+                removeBtn.className = 'btn btn-danger mt-2';
+                removeBtn.textContent = 'Remove';
+                removeBtn.onclick = function() {
+                    this.previousElementSibling.remove();
+                    this.remove();
+                };
+                container.appendChild(newTextArea);
+                container.appendChild(removeBtn);
+                contentCounter++;
+            } else {
+                alert("Maximum of 10 additional content fields can be added.")
+            }
+        });
+
+        var headerCounter = 1;
+        document.getElementById('addHeaderBtn').addEventListener('click', function () {
+            if (headerCounter <= 10) {
+                var container = document.getElementById('additionalHeaders');
+                var newInput = document.createElement('input');
+                newInput.setAttribute('type', 'text');
+                newInput.setAttribute('class', 'form-control mt-2');
+                newInput.setAttribute('name', 'additionalTitle' + headerCounter);
+                newInput.setAttribute('required', true);
+                newInput.placeholder = `Additional header no: ${headerCounter}`;
+                var removeBtn = document.createElement('button');
+                removeBtn.setAttribute('type', 'button');
+                removeBtn.className = 'btn btn-danger mt-2';
+                removeBtn.textContent = 'Remove';
+                removeBtn.onclick = function() {
+                    this.previousElementSibling.remove();
+                    this.remove();
+                };
+                container.appendChild(newInput);
+                container.appendChild(removeBtn);
+                headerCounter++;
+            } else {
+                alert("Maximum of 10 additional header fields can be added.")
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{{>header}}
+<title>Career</title>
+<div class="row p-2" style="margin: 0px !important;">
+  <div class="col-md-12">
+    <div class="card mt-2" style="border-left: 2px solid black;">
+      <div class="alert-success">{{success}}</div>
+      <div class="alert-danger">{{error}}</div>
+      <div class="card-header" style="background-color:#0C1836; color:white;">
+        <h4><b>ALL Applications</b></h4>
+      </div>
+      <div class="card-body p-2">
+        <div id="example1_wrapper">
+          <div class="row">
+            {{!-- <div class="col-12">
+              <ol class="float-sm-right">
+                <form action="/admin/auctionpage">
+                  <button class="fa-solid fa-plus">Add Auction</button>
+                </form>
+              </ol>
+            </div> --}}
+            <div class="col-sm-12">
+              <table id="example2" aria-describedby="example1_info">
+                <thead>
+                  <tr>
+                    <th class="sorting" tabindex="0" aria-controls="example1">S.No</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1">Name</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1">Email</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1">Contact</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1">Role</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1">Resume</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each applications}}
+                  <tr class="odd">
+                    <td>{{inc @index}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.contact}}</td>
+                     <td>{{this.role}}</td>
+                    <td>
+                      <div class="eye">
+                        
+                        <a href="#" class="btn btn-sm btn-secondary">
+                          <i class="fas fa-eye"></i>
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{>footer}}
+</body>
+<script>
+  $(document).ready(function () {
+    if (!$.fn.DataTable.isDataTable('#example2')) {
+      $('#example2').addClass('table table-bordered table-striped').DataTable({
+        "paging": true,
+      });
+    }
+  });
+</script>
+
+</html>
