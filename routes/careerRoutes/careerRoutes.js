@@ -13,7 +13,7 @@ careerRouter.get('/jobs/:category', careerController.jobByCategory);
 careerRouter.get('/category', careerController.category);
 
 careerRouter.post('/apply/:id', careerController.applyJob);
-// careerRouter.get('/applications', careerController.getapplicant);
+careerRouter.get('/applications', careerController.getapplicant);
 // careerRouter.delete('/applications/:id', careerController.deleteapplicant);
 
 module.exports = careerRouter;

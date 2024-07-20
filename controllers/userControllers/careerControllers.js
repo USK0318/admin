@@ -110,15 +110,15 @@ async function applyJob(req, res) {
     }
 }
 
-// async function getapplicant(req, res) {
-//     try {
-//         const applicants = await applicant.find();
-//         res.status(200).json(applicants);
-//     }
-//     catch(err) {
-//         res.status(400).json({message: err.message});
-//     }
-// }
+async function getapplicant(req, res) {
+    try {
+        const applicants = await applicant.find();
+        res.status(200).json(applicants);
+    }
+    catch(err) {
+        res.status(400).json({message: err.message});
+    }
+}
 
 // async function deleteapplicant(req, res) {
 //     try {
@@ -135,11 +135,11 @@ module.exports = {
     jobBYId,
     jobByCategory,
     applyJob,
-    category
+    category,
 
     // deleteJob,
     // createJob,
-    // getapplicant,
+    getapplicant,
     // deleteapplicant
     // updateJob
 }

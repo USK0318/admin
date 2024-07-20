@@ -209,6 +209,7 @@ career : async (req, res) => {
   deleteCareer: async (req, res) => {
     try {
       await job.findByIdAndDelete(req.params.id);
+      await applications.deleteMany({jobid: req.params.id});
       res.redirect("/admin/career");
     }catch(err) {
       res.status(500).json({message: err.message});
